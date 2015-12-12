@@ -66,8 +66,12 @@ public:
                 }
                 move->right = cur->right;
                 move->left = cur->left;
-                        
-                preMove->left = moveRgt;
+                
+                //move might be cur->right (cur->right->left == NULL)
+                //preMove could be NULL
+                if(preMove != NULL) {       
+                    preMove->left = moveRgt;
+                }
                 delete(cur);
               
                 return dummyNode->right;
